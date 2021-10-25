@@ -17,9 +17,7 @@
       "prefer-template":"off",
       "no-plusplus":"off",
       "comma-dangle":"off",
-      "import/extensions": [ 1, {
-        "js": "always", "json": "always"
-      }]
+      "import/extensions": "off"
     },
     "ignorePatterns": [
       "dist/",
