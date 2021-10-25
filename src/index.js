@@ -44,9 +44,9 @@ class TDL {
     input.type = 'text';
     input.placeholder = 'Add to your list...';
     input.id = 'add';
-    input.addEventListener('keydown', () => {
-      if (event.keyCode === 13) {
-        event.preventDefault();
+    input.addEventListener('keydown', (e) => {
+      if (e.keyCode === 13) {
+        e.preventDefault();
         if (input.value !== this.listOfItems.id) {
           resetButton.className = 'RB';
           this.addTask();
@@ -56,8 +56,8 @@ class TDL {
     });
     const enterBTN = document.createElement('button');
     enterBTN.id = 'enterBTN';
-    enterBTN.addEventListener('click', () => {
-      event.preventDefault();
+    enterBTN.addEventListener('click', (e) => {
+      e.preventDefault();
       resetButton.className = 'RB';
       this.addTask();
       form.reset();
