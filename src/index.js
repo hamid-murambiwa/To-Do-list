@@ -19,7 +19,7 @@ class TDL {
         completed: false,
         index: 1,
         id: 'rrma',
-      }
+      },
     ];
   }
 
