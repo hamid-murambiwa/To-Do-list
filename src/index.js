@@ -3,6 +3,7 @@ import Icon from './enter.png';
 import Icon2 from './icons8-available-updates-96.png';
 import Icon3 from './options.png';
 import Icon4 from './icons8-delete-64.png';
+import delTag from './event.js';
 
 class TDL {
   constructor() {
@@ -19,7 +20,7 @@ class TDL {
         completed: false,
         index: 1,
         id: 'rrma',
-      },
+      }
     ];
   }
 
@@ -34,6 +35,9 @@ class TDL {
     heading.innerText = "Today's To Do List";
     const resetButton = document.createElement('button');
     resetButton.className = 'RB';
+    resetButton.addEventListener('click', () => {
+      resetButton.className = 'Rbutton';
+    });
     const resetIcon = document.createElement('img');
     resetIcon.src = Icon2;
     resetIcon.id = 'resetBTN';
@@ -72,6 +76,9 @@ class TDL {
     const clearBTN = document.createElement('button');
     clearBTN.innerText = 'Clear all completed';
     clearBTN.id = 'clearBTN';
+    clearBTN.addEventListener('click', () => {
+      this.clearAllCompleted();
+    });
 
     enterBTN.appendChild(enterIcon);
     firstCon.appendChild(heading);
@@ -107,8 +114,12 @@ class TDL {
       checkBox.id = listOfItems.id;
       checkBox.type = 'checkbox';
       checkBox.addEventListener('change', () => {
-        if (this.checks) {
-          this.checks.push(checkBox.id);
+        if (checkBox.checked) {
+          listOfItems.completed = true;
+          localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
+        } else {
+          listOfItems.completed = false;
+          localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
         }
       });
       const label = document.createElement('input');
@@ -127,9 +138,6 @@ class TDL {
             id: idCode,
           });
           localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
-          this.id.splice(index, 1);
-          this.id.push(idCode);
-          localStorage.setItem('id', JSON.stringify(this.id));
         }
       });
       const optionsBTN = document.createElement('button');
@@ -139,7 +147,7 @@ class TDL {
       checkBox.addEventListener('click', () => {
         if (checkBox.checked) {
           label.remove();
-          const del = document.createElement('del');
+          const del = delTag();
           del.innerText = listOfItems.task;
           checkBoxCon.appendChild(del);
         }
@@ -156,13 +164,6 @@ class TDL {
           const index = this.listOfItems.findIndex((list) => list.id === checkBox.id);
           this.listOfItems.splice(index, 1);
           localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
-
-          const indexID = this.id.findIndex((id) => id === checkBox.id);
-          this.id.splice(indexID, 1);
-          localStorage.setItem('id', JSON.stringify(this.id));
-
-          const checksID = this.checks.findIndex((check) => check === checkBox.id);
-          this.checks.splice(checksID, 1);
         });
       });
 
