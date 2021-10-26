@@ -53,19 +53,12 @@ class TDL {
         e.preventDefault();
         if (input.value !== this.listOfItems.id) {
           resetButton.className = 'RB';
-          this.addTask();
           form.reset();
         }
       }
     });
     const enterBTN = document.createElement('button');
     enterBTN.id = 'enterBTN';
-    enterBTN.addEventListener('click', (e) => {
-      e.preventDefault();
-      resetButton.className = 'RB';
-      this.addTask();
-      form.reset();
-    });
     const enterIcon = document.createElement('img');
     enterIcon.src = Icon;
     enterIcon.id = 'enterIcon';
@@ -76,9 +69,6 @@ class TDL {
     const clearBTN = document.createElement('button');
     clearBTN.innerText = 'Clear all completed';
     clearBTN.id = 'clearBTN';
-    clearBTN.addEventListener('click', () => {
-      this.clearAllCompleted();
-    });
 
     enterBTN.appendChild(enterIcon);
     firstCon.appendChild(heading);
