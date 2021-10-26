@@ -3,6 +3,7 @@ import Icon from './enter.png';
 import Icon2 from './icons8-available-updates-96.png';
 import Icon3 from './options.png';
 import Icon4 from './icons8-delete-64.png';
+import delTag from './event.js';
 
 class TDL {
   constructor() {
@@ -19,7 +20,7 @@ class TDL {
         completed: false,
         index: 1,
         id: 'rrma',
-      },
+      }
     ];
   }
 
@@ -34,6 +35,9 @@ class TDL {
     heading.innerText = "Today's To Do List";
     const resetButton = document.createElement('button');
     resetButton.className = 'RB';
+    resetButton.addEventListener('click', () => {
+      resetButton.className = 'Rbutton';
+    });
     const resetIcon = document.createElement('img');
     resetIcon.src = Icon2;
     resetIcon.id = 'resetBTN';
@@ -49,19 +53,12 @@ class TDL {
         e.preventDefault();
         if (input.value !== this.listOfItems.id) {
           resetButton.className = 'RB';
-          this.addTask();
           form.reset();
         }
       }
     });
     const enterBTN = document.createElement('button');
     enterBTN.id = 'enterBTN';
-    enterBTN.addEventListener('click', (e) => {
-      e.preventDefault();
-      resetButton.className = 'RB';
-      this.addTask();
-      form.reset();
-    });
     const enterIcon = document.createElement('img');
     enterIcon.src = Icon;
     enterIcon.id = 'enterIcon';
@@ -90,7 +87,7 @@ class TDL {
   }
 
   displayTask() {
-    this.listOfItems.forEach((listOfItems, index012) => {
+    this.listOfItems.forEach((listOfItem, index012) => {
       const ul = document.getElementById('list');
       ul.style.display = 'flex';
       const li = document.createElement('li');
@@ -104,17 +101,25 @@ class TDL {
       checkBoxCon.className = 'CBC';
       const checkBox = document.createElement('input');
       checkBox.className = 'cBox';
-      checkBox.id = listOfItems.id;
+      checkBox.id = listOfItem.id;
       checkBox.type = 'checkbox';
+      listOfItem.completed = false;
+      checkBox.checked = false;
+      localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
       checkBox.addEventListener('change', () => {
-        if (this.checks) {
-          this.checks.push(checkBox.id);
+        if (checkBox.checked) {
+          listOfItem.completed = true;
+          localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
+        } else {
+          listOfItem.completed = false;
+          localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
         }
       });
+      checkBox.checked = listOfItem.completed;
       const label = document.createElement('input');
       label.className = 'tasks';
-      label.value = listOfItems.task;
-      const taskInCon = listOfItems.task;
+      label.value = listOfItem.task;
+      const taskInCon = listOfItem.task;
       label.addEventListener('keyup', (event) => {
         if (event.keyCode === 13) {
           const index = this.listOfItems.findIndex((list) => list.task === taskInCon);
@@ -127,21 +132,20 @@ class TDL {
             id: idCode,
           });
           localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
-          this.id.splice(index, 1);
-          this.id.push(idCode);
-          localStorage.setItem('id', JSON.stringify(this.id));
         }
       });
       const optionsBTN = document.createElement('button');
       optionsBTN.className = 'optionsBTN';
-      optionsBTN.addEventListener('click', () => {
-      });
       checkBox.addEventListener('click', () => {
+        const del = delTag();
         if (checkBox.checked) {
           label.remove();
-          const del = document.createElement('del');
-          del.innerText = listOfItems.task;
+          del.innerText = listOfItem.task;
           checkBoxCon.appendChild(del);
+        } else {
+          checkBoxCon.removeChild(checkBoxCon.firstChild);
+          label.innerText = listOfItem.task;
+          checkBoxCon.appendChild(label);
         }
       });
       const optionsIcon = document.createElement('img');
@@ -156,13 +160,6 @@ class TDL {
           const index = this.listOfItems.findIndex((list) => list.id === checkBox.id);
           this.listOfItems.splice(index, 1);
           localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
-
-          const indexID = this.id.findIndex((id) => id === checkBox.id);
-          this.id.splice(indexID, 1);
-          localStorage.setItem('id', JSON.stringify(this.id));
-
-          const checksID = this.checks.findIndex((check) => check === checkBox.id);
-          this.checks.splice(checksID, 1);
         });
       });
 
