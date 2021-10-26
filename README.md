@@ -9,6 +9,7 @@
 - Javascript
 - HTML
 - CSS
+- Webpack
 
 ## Live Demo
 

@@ -97,7 +97,7 @@ class TDL {
   }
 
   displayTask() {
-    this.listOfItems.forEach((listOfItems, index012) => {
+    this.listOfItems.forEach((listOfItem, index012) => {
       const ul = document.getElementById('list');
       ul.style.display = 'flex';
       const li = document.createElement('li');
@@ -111,21 +111,25 @@ class TDL {
       checkBoxCon.className = 'CBC';
       const checkBox = document.createElement('input');
       checkBox.className = 'cBox';
-      checkBox.id = listOfItems.id;
+      checkBox.id = listOfItem.id;
       checkBox.type = 'checkbox';
+      listOfItem.completed = false;
+      checkBox.checked = false;
+      localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
       checkBox.addEventListener('change', () => {
         if (checkBox.checked) {
-          listOfItems.completed = true;
+          listOfItem.completed = true;
           localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
         } else {
-          listOfItems.completed = false;
+          listOfItem.completed = false;
           localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
         }
       });
+      checkBox.checked = listOfItem.completed;
       const label = document.createElement('input');
       label.className = 'tasks';
-      label.value = listOfItems.task;
-      const taskInCon = listOfItems.task;
+      label.value = listOfItem.task;
+      const taskInCon = listOfItem.task;
       label.addEventListener('keyup', (event) => {
         if (event.keyCode === 13) {
           const index = this.listOfItems.findIndex((list) => list.task === taskInCon);
@@ -142,14 +146,16 @@ class TDL {
       });
       const optionsBTN = document.createElement('button');
       optionsBTN.className = 'optionsBTN';
-      optionsBTN.addEventListener('click', () => {
-      });
       checkBox.addEventListener('click', () => {
+        const del = delTag();
         if (checkBox.checked) {
           label.remove();
-          const del = delTag();
-          del.innerText = listOfItems.task;
+          del.innerText = listOfItem.task;
           checkBoxCon.appendChild(del);
+        } else {
+          checkBoxCon.removeChild(checkBoxCon.firstChild);
+          label.innerText = listOfItem.task;
+          checkBoxCon.appendChild(label);
         }
       });
       const optionsIcon = document.createElement('img');
