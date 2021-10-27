@@ -282,9 +282,9 @@ class TDL {
           const num = index;
           this.listOfItems.unshift({
             task: labelValue,
-            id: idCode,
             completed: false,
             index: num,
+            id: idCode,
           });
 
           localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
