@@ -196,7 +196,7 @@ body {
 
   #list {
     width: 250px;
-    max-height: 200px;
+    max-height: 350px;
     overflow-y: scroll;
   }
 
