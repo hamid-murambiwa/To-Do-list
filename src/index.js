@@ -1,9 +1,10 @@
-import printMe from './event.js';
 import './style.css';
 import Icon from './enter.png';
 import Icon2 from './icons8-available-updates-96.png';
 import Icon3 from './options.png';
 import Icon4 from './icons8-delete-64.png';
+import delTag from './event.js';
+
 
 class TDL {
   constructor() {
@@ -155,7 +156,7 @@ class TDL {
     checkBox.addEventListener('click', () => {
       if (checkBox.checked) {
         label.remove();
-        const del = document.createElement('del');
+        const del = delTag();
         del.innerText = input.task;
         checkBoxCon.appendChild(del);
 
