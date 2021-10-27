@@ -238,6 +238,7 @@ class TDL {
 
   displayTask() {
     this.listOfItems.sort((a, b) => a.index > b.index);
+    console.log(this.listOfItems.sort((a, b) => a.index > b.index));
     this.listOfItems.forEach((listOfItems, index012) => {
       const ul = document.getElementById('list');
       ul.style.display = 'flex';
