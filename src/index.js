@@ -5,7 +5,6 @@ import Icon3 from './options.png';
 import Icon4 from './icons8-delete-64.png';
 import delTag from './event.js';
 
-
 class TDL {
   constructor() {
     this.createTDL();
@@ -154,9 +153,9 @@ class TDL {
       }
     });
     checkBox.addEventListener('click', () => {
+      const del = delTag();
       if (checkBox.checked) {
         label.remove();
-        const del = delTag();
         del.innerText = input.task;
         checkBoxCon.appendChild(del);
 
@@ -291,9 +290,9 @@ class TDL {
       optionsBTN.addEventListener('click', () => {
       });
       checkBox.addEventListener('change', () => {
+        const del = delTag();
         if (checkBox.checked) {
           label.remove();
-          const del = document.createElement('del');
           del.innerText = listOfItems.task;
           checkBoxCon.appendChild(del);
           let result = 0;
@@ -302,6 +301,9 @@ class TDL {
               result++;
             }
           });
+          if (result === 0) {
+            this.checks.push(checkBox.id);
+          }
         } else {
           this.checks.pop();
           checkBoxCon.removeChild(checkBoxCon.childNodes[0]);
@@ -348,10 +350,7 @@ class TDL {
     for (let i = 0; i < this.listOfItems.length; i++) {
       if (this.listOfItems[i].completed === true) {
         id.push(this.listOfItems[i].id);
-        console.log(id[i]);
         document.getElementById(this.listOfItems[i].id).parentElement.remove();
-      } else {
-        continue;
       }
     }
 
@@ -370,4 +369,3 @@ class TDL {
 
 const tdl = new TDL();
 tdl.displayTask();
-// localStorage.clear();
