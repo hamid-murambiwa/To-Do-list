@@ -1,4 +1,4 @@
-import printMe from './print.js';
+import printMe from './event.js';
 import './style.css';
 import Icon from './enter.png';
 import Icon2 from './icons8-available-updates-96.png';
