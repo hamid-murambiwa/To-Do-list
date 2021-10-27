@@ -192,6 +192,8 @@ body {
 @media (max-width: 700px) {
   #list {
     width: 250px;
+    max-height: 200px;
+    overflow-y: scroll;
   }
 
   #Con {
