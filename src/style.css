@@ -181,7 +181,7 @@ body {
   border-style: none;
   background-color: transparent;
   height: 40px;
-  width: 100%;
+  width: 582px;
 }
 
 .tasks:focus {
@@ -195,7 +195,7 @@ body {
   }
 
   #list {
-    width: 250px;
+    width: 100%;
     max-height: 350px;
     overflow-y: scroll;
   }
@@ -213,10 +213,14 @@ body {
   }
 
   .tasks {
-    width: 100px;
+    width: 130px;
   }
 
   #clearBTN {
     width: 250px;
+  }
+
+  .optionsIcon {
+    margin-left: 9px;
   }
 }
