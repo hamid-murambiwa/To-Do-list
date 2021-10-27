@@ -139,10 +139,11 @@ class TDL {
         this.listOfItems.splice(index, 1);
         const idCode = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
         checkBox.id = idCode;
+        const num = index;
         this.listOfItems.push({
           task: label.value,
           completed: checkBox.checked,
-          index: this.listOfItems.length,
+          index: num,
           id: idCode,
         });
 
@@ -252,6 +253,9 @@ class TDL {
       checkBox.className = 'cBox';
       checkBox.id = listOfItems.id;
       checkBox.type = 'checkbox';
+      listOfItems.completed = false;
+      checkBox.checked = false;
+      localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
       checkBox.addEventListener('click', () => {
         if (checkBox.checked) {
           this.checks.push(checkBox.id);
@@ -274,9 +278,12 @@ class TDL {
           const idCode = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
           checkBox.id = idCode;
           const labelValue = label.value;
+          const num = index;
           this.listOfItems.unshift({
             task: labelValue,
             id: idCode,
+            completed: false,
+            index: num,
           });
 
           localStorage.setItem('data-list', JSON.stringify(this.listOfItems));
