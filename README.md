@@ -38,7 +38,7 @@ npx hint .
 npx stylelint "**/*.{css,scss}"
 ```
 
-# To check for Javascript errors
+### To check for Javascript errors
 ```
 npx eslint .
 ```
