@@ -1,8 +1,8 @@
-![screenshot](https://github.com/hamid-murambiwa/to-do-list-img/blob/main/Screenshot%202021-10-25%20at%2010.24.20.png)
-
 # To Do list
 
 > A simple HTML list of To Do tasks. This simple web page will be built using webpack and served by a webpack dev server.
+
+![screenshot](https://github.com/hamid-murambiwa/to-do-list-img/blob/main/Screenshot%202021-10-25%20at%2010.24.20.png)
 
 ## Built With
 
@@ -18,22 +18,28 @@
 
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple example steps:
 ### Setup
 
-Run `git clone https://github.com/uzairali19/awesome-books`
+Run
+```
+ git clone https://github.com/uzairali19/awesome-books
+```
 ### Run tests
 
 For Linters:
-
-```bash
-# To check for HTML errors
+- To check for HTML errors
+```
 npx hint .
+```
 
-# To check for CSS errors
+- To check for CSS errors
+```
 npx stylelint "**/*.{css,scss}"
+```
 
 # To check for Javascript errors
+```
 npx eslint .
 ```
 ## Authors
@@ -47,13 +53,13 @@ npx eslint .
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
+> Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/hamid-murambiwa/To-Do-list/issues).
+> Feel free to check the [issues page](https://github.com/hamid-murambiwa/To-Do-list/issues).
 
 ## Show your support
 
-Give a ⭐️ if you like this project!
+> Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
@@ -63,4 +69,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+> This project is [MIT](./MIT.md) licensed.
